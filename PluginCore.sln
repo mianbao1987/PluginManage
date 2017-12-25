@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PluginCore", "PluginCore\PluginCore.vcxproj", "{0285F5F0-FC4E-4DB6-BAE3-353319DD8653}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PluginShape", "PluginShape\PluginShape.vcxproj", "{62E4D47B-062D-4B42-B373-4A75B4A499C3}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PluginTest", "PluginTest\PluginTest.vcxproj", "{79E5001C-29ED-41A5-A63F-B54456FD1DE7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0285F5F0-FC4E-4DB6-BAE3-353319DD8653}.Debug|x86.ActiveCfg = Debug|Win32
+		{0285F5F0-FC4E-4DB6-BAE3-353319DD8653}.Debug|x86.Build.0 = Debug|Win32
+		{0285F5F0-FC4E-4DB6-BAE3-353319DD8653}.Release|x86.ActiveCfg = Release|Win32
+		{0285F5F0-FC4E-4DB6-BAE3-353319DD8653}.Release|x86.Build.0 = Release|Win32
+		{62E4D47B-062D-4B42-B373-4A75B4A499C3}.Debug|x86.ActiveCfg = Debug|Win32
+		{62E4D47B-062D-4B42-B373-4A75B4A499C3}.Debug|x86.Build.0 = Debug|Win32
+		{62E4D47B-062D-4B42-B373-4A75B4A499C3}.Release|x86.ActiveCfg = Release|Win32
+		{62E4D47B-062D-4B42-B373-4A75B4A499C3}.Release|x86.Build.0 = Release|Win32
+		{79E5001C-29ED-41A5-A63F-B54456FD1DE7}.Debug|x86.ActiveCfg = Debug|Win32
+		{79E5001C-29ED-41A5-A63F-B54456FD1DE7}.Debug|x86.Build.0 = Debug|Win32
+		{79E5001C-29ED-41A5-A63F-B54456FD1DE7}.Release|x86.ActiveCfg = Release|Win32
+		{79E5001C-29ED-41A5-A63F-B54456FD1DE7}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -44,8 +44,8 @@
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\mianb\Source\Repos\PluginManage\PluginCore;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\mianb\Source\Repos\PluginManage\PluginCore\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\mianb\Source\Repos\PluginManage\PluginCore;E:\boost_1_61_0\;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\mianb\Source\Repos\PluginManage\PluginCore\Debug;E:\boost_1_61_0\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>

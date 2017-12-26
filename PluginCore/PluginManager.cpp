@@ -5,7 +5,7 @@
 PluginManager::PluginManager(void)
 {
 	m_vecPlugins.clear();
-	m_vecPluginLibs.clear();
+	m_mapPluginLibs.clear();
 }
 
 PluginManager::~PluginManager(void)
@@ -31,14 +31,15 @@ bool PluginManager::LoadAll()
 
 PluginInstance* PluginManager::Load(const std::string &strName,int &errCode)
 {
-	std::map<std::string,DynamicLib *>::iterator iter = m_vecPluginLibs.find(strName);
-	if (iter == m_vecPluginLibs.end())	//不存在就需要插入
+	WriteLock rlock(read_write_mutex_map);
+	std::map<std::string,DynamicLib *>::iterator iter = m_mapPluginLibs.find(strName);
+	if (iter == m_mapPluginLibs.end())	//不存在就需要插入
 	{
 		DynamicLib* pLib = new DynamicLib;
 		if (pLib != NULL)
 		{
 			pLib->LoadLib(strName.c_str());
-			m_vecPluginLibs.insert(make_pair(strName,pLib));
+			m_mapPluginLibs.insert(make_pair(strName,pLib));
 			START_PLUGIN_FUN pFun = (START_PLUGIN_FUN)pLib->GetSymbolAddress("StartPlugin");
 			if (pFun != NULL)
 			{
@@ -53,7 +54,7 @@ PluginInstance* PluginManager::Load(const std::string &strName,int &errCode)
 		}
 	}
 
-	else if (iter != m_vecPluginLibs.end())		//如果存在，在插件列表里面寻找名字是strName的插件
+	else		//如果存在，在插件列表里面寻找名字是strName的插件
 	{
 		for (int i = 0; i < m_vecPlugins.size(); i ++)
 		{
@@ -72,6 +73,7 @@ PluginInstance* PluginManager::Load(const std::string &strName,int &errCode)
 
 bool PluginManager::LoadPlugin(PluginInstance *pPlugin)
 {
+	WriteLock rlock(read_write_mutex_vec);
 	m_vecPlugins.push_back(pPlugin);
 	return true;
 }
@@ -83,8 +85,9 @@ bool PluginManager::UnLoadAll()
 
 bool PluginManager::UnLoad(const std::string &strName)
 {
-	std::map<std::string,DynamicLib *>::iterator iter = m_vecPluginLibs.begin();
-	for (; iter != m_vecPluginLibs.end(); ++iter )
+	WriteLock rlock(read_write_mutex_map);
+	std::map<std::string,DynamicLib *>::iterator iter = m_mapPluginLibs.begin();
+	for (; iter != m_mapPluginLibs.end(); ++iter )
 	{
 		DynamicLib *pLib = iter->second;
 		if (NULL == pLib)
@@ -103,7 +106,7 @@ bool PluginManager::UnLoad(const std::string &strName)
 			delete pLib;
 
 			//然后从列表中删除
-			m_vecPluginLibs.erase(iter);
+			m_mapPluginLibs.erase(iter);
 			return true;
 		}
 	}
@@ -113,6 +116,7 @@ bool PluginManager::UnLoad(const std::string &strName)
 
 bool PluginManager::UnLoadPlugin(PluginInstance *pPlugin)
 {
+	WriteLock rlock(read_write_mutex_vec);
 	std::vector<PluginInstance *>::iterator iter = m_vecPlugins.begin();
 	for (; iter != m_vecPlugins.end(); ++iter )
 	{

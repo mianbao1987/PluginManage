@@ -21,6 +21,8 @@ public:
 	//返回插件的名字，不带后缀
 	virtual std::string GetDisplayName() const = 0;
 
+
+
 private:
 	PluginInstance(const PluginInstance &rhs);
 	const PluginInstance &operator=(const PluginInstance &rhs);	//待实现
